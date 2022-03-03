@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { Users } from './Users';
+import { InlineEdit } from './InlineEdit';
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <InlineEdit />
   </React.StrictMode>,
   document.getElementById('root')
 );

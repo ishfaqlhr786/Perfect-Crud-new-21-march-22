@@ -1,0 +1,6 @@
+[
+    {"id":1,"name":"ali","address": "23west lhr","city":"lahore"},
+    {"id":2,"name":"asad","address": "faisal town lhr","city":"karachi"},
+    {"id":3,"name":"usman","address": "ravo rd lhr","city":"lahore"},
+    {"id":4,"name":"asim","address": "iqbal town lhr","city":"lahore"}
+]
