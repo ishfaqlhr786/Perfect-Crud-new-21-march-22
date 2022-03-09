@@ -36,9 +36,10 @@ export const InlineEdit = () => {
     const handleCancel=()=>{
         setContactId(null)
     }
-    const handleDelete=(contactId)=>{
+    const handleDelete=(userid)=>{
         const newContacts=[...contacts]
-        const index=newContacts.findIndex((contact)=> contact.id === contactId)
+        console.log(userid)
+        const index=newContacts.findIndex((contact)=> contact.id === userid)
         newContacts.splice(index,1)
         setContacts(newContacts)
     }
@@ -52,6 +53,8 @@ export const InlineEdit = () => {
             city: editform.city
         }
         const newcontacts=[...contacts]
+        console.log(contactId)
+        
         const index=newcontacts.findIndex((contact)=> contact.id === contactId)
         console.log(index)
         newcontacts[index]=  EditContact;
@@ -100,7 +103,8 @@ setContactId(null)
                 
                 
                     {
-                        contacts.map((user=>(
+                       
+                       contacts.map((user=>(
                             // const { id,name,address,city}=user;
                             // return(
                                 <>

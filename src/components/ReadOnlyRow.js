@@ -15,7 +15,7 @@ export const ReadOnlyRow = ({user,handleEditClick,handleDelete}) => {
                     {/* <button onClick={handleDelete}>Delete</button> */}
                 </td>
                 <td>
-                    <button onClick={handleDelete}>Delete</button>
+                    <button onClick={()=>handleDelete(id)}>Delete</button>
                 </td>
                
 

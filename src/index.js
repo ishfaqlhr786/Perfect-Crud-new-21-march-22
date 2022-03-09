@@ -5,11 +5,12 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Users } from './Users';
 import { InlineEdit } from './InlineEdit';
+import { ApiList } from './ApiList';
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <InlineEdit />
+    <ApiList />
   </React.StrictMode>,
   document.getElementById('root')
 );
