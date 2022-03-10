@@ -8,6 +8,9 @@ import { InlineEdit } from './InlineEdit';
 import { ApiList } from './ApiList';
 
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+
 ReactDOM.render(
   <React.StrictMode>
     <ApiList />

@@ -190,47 +190,58 @@ const changeImage=(e)=>{
   }
   const DeleteAll=async()=>{
 
-    await   axios.delete(`https://fakestoreapi.com/products`)
-    .then(res => {
-        console.log(res.data)
-     
-//     const rows=[...data2]
-//     console.log(rows)
-//     rows.splice(index,1)
-//   setData2([...rows])
-//  //dispatch(DeleteProduct(id))
-//  console.log(data2)
-
-
-
-    // const newList=[...list]
-    // console.log(productid)
-    // const index=newList.findIndex((product)=> product.id === productid)
-    // newList.splice(index,1)
-    // setList(newList)
-   
+  // const res=  await   axios.delete(`https://fakestoreapi.com/products`,{form});
+  // console.log(res.data)
     
-  })
+     setList([])
+
+
+
+    
+    
+  
 }
     return (
-        <div className="container1">
-            
-         <form onSubmit={handleEditFormSubmit}> 
-            
-            <table cellSpacing="5px" cellPadding="20px" width="500px">
-                <thead>
-                    <tr >
-                     <th>
-                     <SelectAll list={list} handleChange={handleChangeChk} />
-                     </th>
-                        <th>Title</th>
-                        <th>category</th>
-                        <th>price</th>
-                        <th>pic</th>
-                       
-                    </tr>
-                    </thead>
-                    <tbody>
+        <div className="container1" style={{width:"100%"}}>
+             <div style={{marginLeft:"200px"}}>
+                   
+                  <span><button 
+                  className="btn btn-lg btn-danger"
+                  onClick={DeleteAll}>DeleteAll</button></span>   
+                     </div>
+         <form onSubmit={handleEditFormSubmit} > 
+        
+                     <br/>
+                     <table border="10px" width="80%"style={{margibTop:"100px",marginLeft:"20px"}} 
+                     cellPadding="20px"
+                     >
+                <tr style={{backgroundColor:"gray"}}>
+                    <th style={{paddingLeft:"20px"}}>
+                    <SelectAll list={list} handleChange={handleChangeChk} />
+                    </th>
+                    <th style={{paddingLeft:"20px"}}>
+                        id
+                    </th>
+                    <th style={{paddingLeft:"20px"}}>
+                        title
+                    </th>
+                    <th style={{paddingLeft:"20px"}}>
+                        category
+                    </th>
+                    <th style={{paddingLeft:"20px"}}>
+                        price
+                    </th>
+                    <th style={{paddingLeft:"20px"}}>
+                        picture
+                    </th >
+                    <th style={{paddingLeft:"20px"}}>
+                        Change
+                    </th>
+                    <th style={{paddingLeft:"20px"}}>
+                        Remove
+                    </th>
+                </tr>
+                    
                 
                 
                     {
@@ -259,9 +270,7 @@ handleChange={handleChangeChk}
 }
                                
                       
-            
-              </tbody>
-            </table>
+          </table>
             </form>
             
             <h2>Add new Product</h2>
@@ -283,15 +292,18 @@ handleChange={handleChangeChk}
 />
 
 
+  <div>
   
-   <img src={form.image} width="200px" height="190px" style={form.image === "" ? {display: "none"} : {position:"absolute",bottom:"100px" ,right:"600px",
+   <img src={form.image} width="200px" height="190px" style={form.image === "" ? {display: "none"} : {position:"relative",bottom:"300px",left:"300px"
    
    }}
    
    />
+   
+   </div>
                 <button type="submit">Add</button>
             </form>
-            <button onClick={()=>DeleteAll}>Delete All</button>
+           
         </div>
     )
 }

@@ -3,16 +3,16 @@ import React from 'react'
 export const ReadOnlyProduct = ({product,clickEdit,handleDelete,handleChange}) => {
     const {id,title,category,price,image}= product
     return (
-        <div>
+        <>
             
             <tr>
-                <td>
+                <td style={{paddingLeft:"20px"}}>
                 <input type="checkbox"  name={product.title}
                     checked={product?.isChecked || false}
                     onChange={handleChange}
                     />
                 </td>
-    <td>
+    <td style={{paddingLeft:"20px"}}>
         {id}
     </td>
     <td>
@@ -28,15 +28,21 @@ export const ReadOnlyProduct = ({product,clickEdit,handleDelete,handleChange}) =
         <img src={image} alt="ll" width="200px" height="200px"/>
     </td>
     <td>
-        <button onClick={(e)=>clickEdit(e,product)}> EDit</button>
+        <button 
+        className="btn btn-lg btn-warning"
+        onClick={(e)=>clickEdit(e,product)}> EDit</button>
     </td>
     <td>
-        <button onClick={()=>handleDelete(product.id)}> Delete</button>
+        <button 
+        className="btn btn-lg btn-danger"
+        onClick={()=>handleDelete(product.id)}> Delete</button>
     </td>
-</tr>
+
 <div>
 
 </div>
-        </div>
+</tr>
+
+        </>
     )
 }

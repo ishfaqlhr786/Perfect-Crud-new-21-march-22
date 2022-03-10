@@ -2,17 +2,9 @@ import React from 'react'
 import '../App.css'
 export const Editproduct = ({editform,handleEditForm,handleCancel,changeImageEdit}) => {
     return (
-        <div className="container">
-            <table width="100%" border="10" cellSpacing="5">
-                {/* <thead>
-                    <tr>
-                     
-                        <th>Nmae</th>
-                        <th>Address</th>
-                        <th>City</th>
-                    </tr>
-                </thead> */}
-                <tbody>
+        <>
+            
+                
             <tr>
             <td >
                     <input type="number" name="id"  
@@ -40,25 +32,30 @@ export const Editproduct = ({editform,handleEditForm,handleCancel,changeImageEdi
                     <button onClick={handleCancel}>cancel</button>
                 </td>
                 <td>
-                <div style={{position:"relative", top:"100px",left:"500px"}}>
-                 <label for="file">Please select am image</label>
-               </div>
-                <input type="file" onChange={changeImageEdit} name="editform.image" id="file"
+                
+               
+               <input type="file" onChange={changeImageEdit} name="editform.image" className="editImage"
 
 />
 
+</td>
 
+<td>
+
+ 
+  <img src={editform.image} width="200px" height="190px" style={editform.image === "" ? {display: "none"} : {display:"block"
   
-   <img src={editform.image} width="200px" height="190px" style={editform.image === "" ? {display: "none"} : {position:"absolute",top:"200px" ,right:"270px",
-   
-   }}
-   
-   />
+  }}
+  
+  />
+  
                 </td>
+                
             </tr>
-            </tbody>
-            </table>
             
-        </div>
+            
+          
+                
+        </>
     )
 }

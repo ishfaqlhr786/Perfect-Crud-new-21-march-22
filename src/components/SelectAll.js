@@ -5,10 +5,11 @@ export const SelectAll = ({list,handleChange}) => {
         <div>
             <h2>
 <input type="checkbox" onChange={handleChange}
+className="btn btn-sm btn-success"
 name="Allselect"
 checked={list.filter((item)=>item?.isChecked !== true ).length < 1}
 />
-<label>Select all</label>
+
 </h2>
         </div>
     )
