@@ -9,6 +9,7 @@ import { ApiList } from './ApiList';
 
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import AddDeleteTableRows from './AddDeleteTableRows';
 
 
 ReactDOM.render(

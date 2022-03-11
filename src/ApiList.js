@@ -183,31 +183,92 @@ const changeImage=(e)=>{
       })
       setList(tempUser)
     } else {
-      let tempUser = list.map(item => item.title === name? { ...item, isChecked: checked } : item)
+      let tempUser = list.map(item =>item.title === name? { ...item, isChecked: checked } : item)
+    
       setList(tempUser)
+      
+
+      
+     
     }
 
   }
   const DeleteAll=async()=>{
+    const arrIds=[]
+    list.map(d=>{
+      if(d.isChecked){
+        arrIds.push(d.id)
+        
+        axios.delete(`https://fakestoreapi.com/products/${d.id}`).then(data=>{
+      console.log(data)
+      console.log(arrIds)
+  setList([])
+  
+ 
 
-  // const res=  await   axios.delete(`https://fakestoreapi.com/products`,{form});
-  // console.log(res.data)
+    })
     
-     setList([])
-
-
-
-    
-    
+      }
+     
+    })
+   
   
 }
+const deleteSelected = () => {
+ 
+  const arrIds=[]
+  const newList=[...list]
+  //for(let i=0;i<newList.length;i++){
+  list.map(d=>{
+    if(d.isChecked){
+      arrIds.push(d.id)
+      axios.delete(`https://fakestoreapi.com/products/${d.id}`).then(data=>{
+    console.log(data)
+  //  const index= newList.findIndex(p=>p.id ===d.id)
+  //  console.log(index)
+  //  newList.splice(index,1)
+  //  setList(newList)
+ // fetchData();
+      })
+     
+    }
+  //for(let i=0;i<arrIds.length;i++){
+   
+  //}
+
+    })
+  const a=  list.filter((item)=>item?.isChecked === true )
+    console.log("checked array", a)
+  
+ for(let i=0;i<a.length;i++){
+   const ind= newList.findIndex(p=>p.id === a[i].id)
+   console.log(ind)
+   newList.splice(ind,1)
+   setList(newList)
+ }
+  
+
+
+  }
+
+ 
+// const removerItem=(ids)=>{
+
+     
+// }
     return (
-        <div className="container1" style={{width:"100%"}}>
+        <div className="container-fluid" >
              <div style={{marginLeft:"200px"}}>
                    
                   <span><button 
                   className="btn btn-lg btn-danger"
-                  onClick={DeleteAll}>DeleteAll</button></span>   
+                  onClick={DeleteAll}>DeleteAll/</button>
+                  
+                  <button 
+                  className="btn btn-lg btn-danger"
+                  onClick={deleteSelected}>Multiple checked delete</button>
+                  </span>  
+
                      </div>
          <form onSubmit={handleEditFormSubmit} > 
         
@@ -246,21 +307,19 @@ const changeImage=(e)=>{
                 
                     {
                        
-                       list.map(product=>
-                            // const { id,name,address,city}=user;
-   
-//const {id,title, category,price,image}= product
+                       list.map((product,index)=>
+                           
 (<>
-{/* <MultipleSelect product={product} handleChange={handleChangeChk} /> */}
+
 {
 productId === product.id?   (<Editproduct editform={editform}
 handleEditForm={handleEditForm}
 handleCancel={handleCancel}
 changeImageEdit={changeImageEdit}
 
-/>) : (<ReadOnlyProduct product={product} clickEdit={clickEdit}
+/>) : (<ReadOnlyProduct product={product} index={index} clickEdit={clickEdit}
 handleDelete={handleDelete}
-
+deleteSelected={deleteSelected}
 handleChange={handleChangeChk}
 />)
 }

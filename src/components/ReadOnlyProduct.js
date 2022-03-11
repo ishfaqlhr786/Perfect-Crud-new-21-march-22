@@ -1,7 +1,8 @@
 import React from 'react'
 
-export const ReadOnlyProduct = ({product,clickEdit,handleDelete,handleChange}) => {
+export const ReadOnlyProduct = ({product,clickEdit,handleDelete,handleChange,deleteSelected}) => {
     const {id,title,category,price,image}= product
+   // console.log("indexes",index)
     return (
         <>
             
@@ -9,7 +10,7 @@ export const ReadOnlyProduct = ({product,clickEdit,handleDelete,handleChange}) =
                 <td style={{paddingLeft:"20px"}}>
                 <input type="checkbox"  name={product.title}
                     checked={product?.isChecked || false}
-                    onChange={handleChange}
+                    onChange={handleChange} 
                     />
                 </td>
     <td style={{paddingLeft:"20px"}}>
