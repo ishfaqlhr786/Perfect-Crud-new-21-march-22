@@ -12,7 +12,8 @@ import { SelectAll } from './components/SelectAll'
 import { MultipleSelect } from './components/MultipleSelect'
 export const ApiList = () => {
    const [list,setList]= useState([])
-   const [productId,setProductId]= useState(null)
+   const [productId,setProductId]= useState('0')
+   const [category,setCategory]=useState("category")
    const [form,setForm]= useState({
     title:"",
     category:"",
@@ -26,20 +27,20 @@ export const ApiList = () => {
     price:0,
     image:""
 })
-
+const [searchId,setSearchId] = useState(null)
     const fetchData=async()=>{
         // const res= await axios.get(``)
-         const res = await axios.get(
-             `https://fakestoreapi.com/products`
-           )
-           console.log(res.data)
-          setList(res.data)
+      const res = await axios.get(
+        `https://fakestoreapi.com/products`
+      )
+      console.log(res.data)
+      setList(res.data)
           // console.log(list.data)
           // return res.data;
  
      }
      useEffect(()=>{
-fetchData()
+       fetchData()
      },[])
    console.log(list)
  
@@ -70,62 +71,37 @@ const handleEditForm=(event)=>{
 
 }
 const  handleEditFormSubmit=async(e)=>{
-    e.preventDefault();
-    console.log(editform)
-    // const EditContact={
-    //     id:productId,
-    //     title:editform.title,
-    //     category:editform.category,
-    //     price: editform.price,
-    //     image:editform.image
-    // }
-    await   axios.put(`https://fakestoreapi.com/products/${productId}`,editform)
-   .then(res => {
-       console.log(res.data)
-    
-   
-    //const newItem={
-    // const EditContact={
-    //     id:productId,
-    //     title:editform.title,
-    //     category:editform.category,
-    //     price: editform.price,
-    //     image:editform.image
-    // }
-    const newproducts=[...list]
-   // console.log(contactId)
-    
-    const index=newproducts.findIndex((product)=> product.id === productId)
-    console.log(index)
-  newproducts[index]=  res.data;
- //newproducts[index]= editform
-  //const newList=[...list,res.data]
-  //setList(newList)
-setList(newproducts)
-setProductId(null)
-})
+  e.preventDefault();
+  console.log(editform)
+
+  await axios.put(`https://fakestoreapi.com/products/${productId}`, editform)
+    .then(res => {
+      console.log(res.data)
+      const newproducts = [...list]
+      // console.log(contactId)
+
+      const index = newproducts.findIndex((product) => product.id === productId)
+      console.log(index)
+      newproducts[index] = res.data;
+      //newproducts[index]= editform
+      //const newList=[...list,res.data]
+      //setList(newList)
+      setList(newproducts)
+      setProductId(null)
+    })
 }
 const handleDelete=async(productid)=>{
-    console.log(productid)
+  console.log(productid)
 
-    await   axios.delete(`https://fakestoreapi.com/products/${productid}`)
+  await axios.delete(`https://fakestoreapi.com/products/${productid}`)
     .then(res => {
-        console.log(res.data)
-     
-//     const rows=[...data2]
-//     console.log(rows)
-//     rows.splice(index,1)
-//   setData2([...rows])
-//  //dispatch(DeleteProduct(id))
-//  console.log(data2)
+      console.log(res.data)
 
-
-
-    const newList=[...list]
-    console.log(productid)
-    const index=newList.findIndex((product)=> product.id === productid)
-    newList.splice(index,1)
-    setList(newList)
+      const newList = [...list]
+      console.log(productid)
+      const index = newList.findIndex((product) => product.id === productid)
+      newList.splice(index, 1)
+      setList(newList)
 })
 }
 //alert(productId)
@@ -151,26 +127,26 @@ const handleSubmit=async(e)=>{
 
 const changeImage=(e)=>{
     try {
-      setForm({...form,image:URL.createObjectURL(e.target.files[0])}
-        
-     )
+      setForm({ ...form, image: URL.createObjectURL(e.target.files[0]) }
+
+      )
     }
     catch {
       return 0
     }
-    
+
 
   }
-  const changeImageEdit=(e)=>{
+  const changeImageEdit = (e) => {
     try {
-      setEditForm({...editform,image:URL.createObjectURL(e.target.files[0])}
-        
-     )
+      setEditForm({ ...editform, image: URL.createObjectURL(e.target.files[0]) }
+
+      )
     }
     catch {
       return 0
     }
-    
+
 
   }
   const handleChangeChk = (e) => {
@@ -183,93 +159,132 @@ const changeImage=(e)=>{
       })
       setList(tempUser)
     } else {
-      let tempUser = list.map(item =>item.title === name? { ...item, isChecked: checked } : item)
-    
-      setList(tempUser)
-      
+      let tempUser = list.map(item => item.title === name ? { ...item, isChecked: checked } : item)
 
-      
-     
+      setList(tempUser)
+
+
+
+
     }
 
   }
   const DeleteAll=async()=>{
-    const arrIds=[]
-    list.map(d=>{
-      if(d.isChecked){
+    const arrIds = []
+    list.map(d => {
+      if (d.isChecked) {
         arrIds.push(d.id)
-        
-        axios.delete(`https://fakestoreapi.com/products/${d.id}`).then(data=>{
-      console.log(data)
-      console.log(arrIds)
-  setList([])
-  
- 
 
-    })
-    
+        axios.delete(`https://fakestoreapi.com/products/${d.id}`).then(data => {
+          console.log(data)
+          console.log(arrIds)
+          setList([])
+
+
+
+        })
+
       }
-     
+
     })
    
   
 }
-const deleteSelected = () => {
- 
-  const arrIds=[]
-  const newList=[...list]
-  //for(let i=0;i<newList.length;i++){
-  list.map(d=>{
-    if(d.isChecked){
-      arrIds.push(d.id)
-      axios.delete(`https://fakestoreapi.com/products/${d.id}`).then(data=>{
-    console.log(data)
-  //  const index= newList.findIndex(p=>p.id ===d.id)
-  //  console.log(index)
-  //  newList.splice(index,1)
-  //  setList(newList)
- // fetchData();
-      })
-     
-    }
-  //for(let i=0;i<arrIds.length;i++){
-   
-  //}
+const deleteSelected = (e) => {
+  e.preventDefault()
 
-    })
-  const a=  list.filter((item)=>item?.isChecked === true )
-    console.log("checked array", a)
-  
- for(let i=0;i<a.length;i++){
-   const ind= newList.findIndex(p=>p.id === a[i].id)
-   console.log(ind)
-   newList.splice(ind,1)
-   setList(newList)
- }
-  
+  const arrIds = []
+  const newList = [...list]
+  //for(let i=0;i<newList.length;i++){
+  list.map(d => {
+    if (d.isChecked) {
+     // arrIds.push(d.id)
+      axios.delete(`https://fakestoreapi.com/products/${d.id}`).then(data => {
+        console.log(data)
+
+      })
+
+    }
+
+
+  })
+  const a = list.filter((item) => item?.isChecked === true)
+  console.log("checked array", a)
+
+  for (let i = 0; i < a.length; i++) {
+    const ind = newList.findIndex(p => p.id === a[i].id)
+    console.log(ind)
+    newList.splice(ind, 1)
+    setList(newList)
+  }
+
 
 
   }
+const handleSearch=async(e,id)=>{
+  e.preventDefault()
+console.log("search clicked")
+console.log("id is", id)
+const res = await axios.get(
+  `https://fakestoreapi.com/products/${id}`
+)
+console.log(res.data)
+const newList=[]
+newList.push(res.data)
 
+setList(newList)
+}
+const handleSearchByName=async(e,category)=>{
+  e.preventDefault();
+  console.log(category)
+  const res = await axios.get(
+    `https://fakestoreapi.com/products/category/${category}`
+  )
+  console.log(res.data)
+  const newList=[]
+  newList.push(...res.data)
+  
+  setList(newList)
+}
  
-// const removerItem=(ids)=>{
 
-     
-// }
     return (
-        <div className="container-fluid" >
+        <div className="container22" style={{width:"100vw"}} >
              <div style={{marginLeft:"200px"}}>
                    
                   <span><button 
                   className="btn btn-lg btn-danger"
-                  onClick={DeleteAll}>DeleteAll/</button>
+                  onClick={DeleteAll}>DeleteAll/{''}{''}<i class="fa fa-trash" aria-hidden="true"></i></button>
                   
                   <button 
                   className="btn btn-lg btn-danger"
-                  onClick={deleteSelected}>Multiple checked delete</button>
+                  onClick={(e)=>deleteSelected(e)}>Multiple checked delete
+                  <i class="fa fa-trash" aria-hidden="true"></i></button>
                   </span>  
 
                      </div>
+                     <form >
+                       
+                       <label className="custom-control-label">Search by id</label>
+                       <input type="number" 
+                       className="form-control"
+                       value={searchId} onChange={(e)=>setSearchId(e.target.value)}/>
+                       <button 
+                       className="btn btn-md btn-warning"
+                       onClick={(e)=>handleSearch(e,searchId)}><i className="fa fa-search-plus" 
+                       style={{fontSize:"20px"}}
+                       aria-hidden="true"></i></button>
+                       <br/>
+                       <label className="custom-control-label">Search by Category</label>
+                       <input type="text" 
+                        className="form-control"
+                       value={category} onChange={(e)=>setCategory(e.target.value)}/>
+                       <button 
+                       className="btn btn-md btn-warning"
+                       onClick={(e)=>handleSearchByName(e,category)}><i className="fa fa-search-plus" 
+                       style={{fontSize:"20px"}}
+                       aria-hidden="true"></i></button>
+                     </form>
          <form onSubmit={handleEditFormSubmit} > 
         
                      <br/>
@@ -333,14 +348,23 @@ handleChange={handleChangeChk}
             </form>
             
             <h2>Add new Product</h2>
-            <form onSubmit={handleSubmit}>
-                <input type="text" name="title" required="required" value={form.title}
+            <form onSubmit={(e)=>handleSubmit(e)}>
+              <label className="custom-control-label">Title</label>
+                <input type="text" 
+                 className="form-control"
+                name="title" required="required" value={form.title}
                 onChange={handleChange}
                 />
-                <input type="text" name="category" required="required" value={form.category}
+                <label className="custom-control-label">Category</label>
+                <input type="text" 
+                 className="form-control"
+                name="category" required="required" value={form.category}
                 onChange={handleChange}
                 />
-                <input type="number" name="price" required="required" value={form.price}
+                <label className="custom-control-label">Price</label>
+                <input type="number"
+                 className="form-control"
+                name="price" required="required" value={form.price}
                 onChange={handleChange}
                 /><br/>
                  <div style={{position:"relative", top:"100px",left:"500px"}}>
@@ -360,7 +384,10 @@ handleChange={handleChangeChk}
    />
    
    </div>
-                <button type="submit">Add</button>
+                <button 
+                className="btn btn-md btn-success"
+                type="submit">Add
+                <i class="fa fa-plus-square" aria-hidden="true"></i></button>
             </form>
            
         </div>

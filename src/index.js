@@ -7,8 +7,9 @@ import { Users } from './Users';
 import { InlineEdit } from './InlineEdit';
 import { ApiList } from './ApiList';
 
-
+import "font-awesome/css/font-awesome.min.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 import AddDeleteTableRows from './AddDeleteTableRows';
 
 

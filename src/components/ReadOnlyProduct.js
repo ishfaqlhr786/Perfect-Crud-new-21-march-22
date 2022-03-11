@@ -8,7 +8,9 @@ export const ReadOnlyProduct = ({product,clickEdit,handleDelete,handleChange,del
             
             <tr>
                 <td style={{paddingLeft:"20px"}}>
-                <input type="checkbox"  name={product.title}
+                <input type="checkbox" 
+              className="  custom-control-input"
+                name={product.title}
                     checked={product?.isChecked || false}
                     onChange={handleChange} 
                     />
@@ -31,12 +33,12 @@ export const ReadOnlyProduct = ({product,clickEdit,handleDelete,handleChange,del
     <td>
         <button 
         className="btn btn-lg btn-warning"
-        onClick={(e)=>clickEdit(e,product)}> EDit</button>
+        onClick={(e)=>clickEdit(e,product)}> <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
     </td>
     <td>
         <button 
         className="btn btn-lg btn-danger"
-        onClick={()=>handleDelete(product.id)}> Delete</button>
+        onClick={()=>handleDelete(product.id)}> <i class="fa fa-trash" aria-hidden="true"></i></button>
     </td>
 
 <div>

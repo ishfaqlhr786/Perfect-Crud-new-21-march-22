@@ -5,7 +5,7 @@ export const Editproduct = ({editform,handleEditForm,handleCancel,changeImageEdi
         <>
             
                 
-            <tr>
+            <tr style={{width:"100%"}}>
             <td >
                     <input type="number" name="id"  
                     value={editform.id}/>
@@ -25,7 +25,9 @@ export const Editproduct = ({editform,handleEditForm,handleCancel,changeImageEdi
                 </td>
                 
                 <td>
-                    <button type="submit">Save</button>
+                    <button 
+                    className="btn btn-md btn-success"
+                    type="submit">Save<i class="fa fa-plus-square" aria-hidden="true"></i></button>
                    
                 </td>
                 <td>
