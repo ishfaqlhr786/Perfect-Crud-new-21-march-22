@@ -11,11 +11,14 @@ import "font-awesome/css/font-awesome.min.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import AddDeleteTableRows from './AddDeleteTableRows';
+import ReactPage  from './ReactPage';
+import { ApiList1 } from './ApiList1';
+import { ApiList2 } from './ApiList2';
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <ApiList />
+    <ApiList2 />
   </React.StrictMode>,
   document.getElementById('root')
 );
