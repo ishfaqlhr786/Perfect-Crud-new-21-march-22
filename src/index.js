@@ -9,7 +9,7 @@ import { ApiList } from './ApiList';
 
 import "font-awesome/css/font-awesome.min.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import PaginatedItems from './PaginatedItems'
 import AddDeleteTableRows from './AddDeleteTableRows';
 import ReactPage  from './ReactPage';
 import { ApiList1 } from './ApiList1';
@@ -18,7 +18,7 @@ import { ApiList2 } from './ApiList2';
 
 ReactDOM.render(
   <React.StrictMode>
-    <ApiList2 />
+    <ApiList2 />,
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,11 +1,12 @@
 import React from 'react'
 import './App.css'
 export const Editproduct2 = ({editform,handleEditForm,handleCancel}) => {
+    console.log(editform)
     return (
         <>
             
                 
-            <tr style={{width:"100%"}}>
+         <tr style={{width:"100%"}}>
             <td >
                     <input type="number" name="id"  
                     value={editform.id}/>
@@ -36,7 +37,10 @@ export const Editproduct2 = ({editform,handleEditForm,handleCancel}) => {
             
             
           
+                 
+                 
                 
+                 
         </>
     )
 }

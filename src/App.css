@@ -42,3 +42,20 @@ input#file {
   
   
 }
+ReactPaginate{
+  position: relative;
+  right:500px;
+  background-color: red;
+}
+ReactPaginate {
+  display: list-item;
+  margin-left: 300px;
+  
+}
+
+.inline1{
+  display: inline-block;
+}
+ul li{
+  margin: 10px 20px 0px 20px;
+}
