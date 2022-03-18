@@ -12,6 +12,7 @@ import { SelectAll2 } from './SelectAll2'
 import { MultipleSelect } from './components/MultipleSelect'
 import { useTable,usePagination,useRowSelect,ReactTableDefaults } from "react-table";
 import PaginatedItems from './PaginatedItems'
+import PaginatedItems1 from './PaginatedItems1'
 
 
 export const ApiList2 = () => {
@@ -148,8 +149,17 @@ export const ApiList2 = () => {
               </select>
             </li>
 
-            <li>
+            {/* <li>
               <PaginatedItems items={data} itemsPerPage={limit}
+                initialPage={1}
+
+
+              />
+            </li> */}
+             <li>
+              <PaginatedItems1 items={data} 
+              
+              itemsPerPage={limit}
                 initialPage={1}
 
 
