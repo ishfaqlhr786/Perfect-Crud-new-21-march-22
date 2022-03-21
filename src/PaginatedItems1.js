@@ -65,7 +65,8 @@ function Items({ currentItems ,handleChange,items,handleDelete,deleteSelected
                   <i class="fa fa-trash" aria-hidden="true"></i></button>
                   </span>  
                   <form onSubmit={handleEditFormSubmit} >
-       <table width="700px" border="10" style={{marginLeft:"400px",borderRadius:"20%"}} cellSpacing={6} cellPadding={6}>
+       <table width="700px" border="10" style={{marginLeft:"400px",borderRadius:"20%"}} 
+       cellSpacing={6} cellPadding={6}>
                <tr style={{backgroundColor:"grey"}}>
                    <th style={{paddingLeft:"20px"}}>
                    <SelectAll2 list={currentItems}   handleChange={handleChange} />
@@ -360,6 +361,7 @@ console.log("search clicked")
 console.log("id is", id)
 const newList=[]
 currentItems.map(el=>
+  
   el.id === parseInt(id )? newList.push(el): el
   )
   //setData(newList)
@@ -396,8 +398,13 @@ const handleLimit=(e)=>{
 }
   
   return (
+    
     <>
-    <div className='container-fluid' style={{textAlign:"center",backgroundColor:"#C4E538"}}>
+    <div className='container-fluid' style={{textAlign:"center",backgroundColor:"#C4E538"}}
+    
+    
+    
+    >
       <Items currentItems={currentItems} 
       items={items} handleDelete={handleDelete} deleteSelected={deleteSelected}
       handleEditFormSubmit={handleEditFormSubmit}

@@ -87,24 +87,7 @@ export const ApiList2 = () => {
             
        
     ])
-  //   const [data,setData  ]=useState([{
-  //     name:"asad",city:"lhr",isChecked:false},
-  //     {name:"asim",city:"lhr",isChecked:false},
-  //    { name:"aslam",city:"lhr",isChecked:false},
-  //     {name:"asad",city:"lhr",isChecked:false},
-  //     {name:"asad",city:"lhr",isChecked:false},
-  //    { name:"asad",city:"lhr",isChecked:false},
-  //     {name:"asghar",city:"lhr",isChecked:false},
-  //    { name:"asghar",city:"lhr",isChecked:false},
-  //    { name:"asad",city:"lhr",isChecked:false},
-  //    { name:"asad",city:"lhr",isChecked:false},
-  //     {name:"arif",city:"lhr",isChecked:false},
-  //     {name:"arif",city:"lhr",isChecked:false},
-  //    { name:"asad",city:"lhr",isChecked:false},
-  //    { name:"asad",city:"lhr",isChecked:false},
-  //     {name:"asad",city:"lhr",isChecked:false},
-  // ])
-   // const [list,setList]= useState([])
+  
     const [limit,setLimit]=useState(5)
    
    
