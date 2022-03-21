@@ -32,6 +32,60 @@ export const ApiList2 = () => {
        { id:13,name:"asad",city:"lhr",isChecked:false},
        { id:14,name:"asad",city:"lhr",isChecked:false},
         {id:15,name:"asad",city:"lhr",isChecked:false},
+       
+          {
+            id:16,name:"asad",city:"lhr",isChecked:false},
+            {id:17,name:"asim",city:"lhr",isChecked:false},
+           { id:18,name:"aslam",city:"lhr",isChecked:false},
+            {id:19,name:"asad",city:"lhr",isChecked:false},
+            {id:20,name:"asad",city:"lhr",isChecked:false},
+           { id:21,name:"asad",city:"lhr",isChecked:false},
+            {id:22,name:"asghar",city:"lhr",isChecked:false},
+           { id:23,name:"asghar",city:"lhr",isChecked:false},
+           { id:24,name:"asad",city:"lhr",isChecked:false},
+           { id:25,name:"asad",city:"lhr",isChecked:false},
+            {id:26,name:"arif",city:"lhr",isChecked:false},
+            {id:27,name:"arif",city:"lhr",isChecked:false},
+           { id:28,name:"asad",city:"lhr",isChecked:false},
+           { id:29,name:"asad",city:"lhr",isChecked:false},
+            {id:30,name:"asad",city:"lhr",isChecked:false},
+ 
+          {
+            id:31,name:"asad",city:"lhr",isChecked:false},
+            {id:32,name:"asim",city:"lhr",isChecked:false},
+           { id:33,name:"aslam",city:"lhr",isChecked:false},
+            {id:34,name:"asad",city:"lhr",isChecked:false},
+            {id:35,name:"asad",city:"lhr",isChecked:false},
+           { id:36,name:"asad",city:"lhr",isChecked:false},
+            {id:37,name:"asghar",city:"lhr",isChecked:false},
+           { id:38,name:"asghar",city:"lhr",isChecked:false},
+           { id:39,name:"asad",city:"lhr",isChecked:false},
+           { id:40,name:"asad",city:"lhr",isChecked:false},
+            {id:41,name:"arif",city:"lhr",isChecked:false},
+            {id:42,name:"arif",city:"lhr",isChecked:false},
+           { id:43,name:"asad",city:"lhr",isChecked:false},
+           { id:44,name:"asad",city:"lhr",isChecked:false},
+            {id:45,name:"asad",city:"lhr",isChecked:false},
+           
+              {id:46,name:"asim",city:"lhr",isChecked:false},
+             { id:47,name:"aslam",city:"lhr",isChecked:false},
+              {id:48,name:"asad",city:"lhr",isChecked:false},
+              {id:49,name:"asad",city:"lhr",isChecked:false},
+             { id:50,name:"asad",city:"lhr",isChecked:false},
+              {id:51,name:"asghar",city:"lhr",isChecked:false},
+             { id:52,name:"asghar",city:"lhr",isChecked:false},
+             { id:53,name:"asad",city:"lhr",isChecked:false},
+             { id:54,name:"asad",city:"lhr",isChecked:false},
+              {id:55,name:"arif",city:"lhr",isChecked:false},
+              {id:56,name:"arif",city:"lhr",isChecked:false},
+             { id:57,name:"asad",city:"lhr",isChecked:false},
+             { id:58,name:"asad",city:"lhr",isChecked:false},
+              {id:59,name:"asad",city:"lhr",isChecked:false},
+              {
+                id:60,name:"asad",city:"lhr",isChecked:false},
+ 
+            
+       
     ])
   //   const [data,setData  ]=useState([{
   //     name:"asad",city:"lhr",isChecked:false},
@@ -130,24 +184,7 @@ export const ApiList2 = () => {
                 
                     
  <div >
-          <ul style={{ display: "flex", listStyleType: "none" }}>
-            <li style={{ position: "relative", top: "350px" }}>
-              <select
-                value={limit}
-                name="limit"
-                
-                onChange={(e) => {
-                  setLimit(e.target.value)
-                }}
-              >
-                <option value="select Limit">Select Limit</option>
-                <option value="5">5</option>
-                <option value="10">
-                  10
-                  </option>
-                <option value="15">15</option>
-              </select>
-            </li>
+         
 
             {/* <li>
               <PaginatedItems items={data} itemsPerPage={limit}
@@ -156,17 +193,15 @@ export const ApiList2 = () => {
 
               />
             </li> */}
-             <li>
+             
               <PaginatedItems1 items={data} 
               
-              itemsPerPage={limit}
+             // itemsPerPage={limit}
                 initialPage={1}
 
 
               />
-            </li>
-
-          </ul>
+           
    </div>
     
 

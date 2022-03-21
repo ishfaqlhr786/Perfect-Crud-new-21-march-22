@@ -1,3 +1,6 @@
+
+
+
 import React, { useEffect, useState ,useCallback} from 'react';
 import ReactDOM from 'react-dom';
 import ReactPaginate from 'react-paginate';
@@ -21,38 +24,49 @@ function Items({ currentItems ,handleChange,items,handleDelete,deleteSelected
     const [pid,setpId]  = useState(0)
   return (
     <>
+    <div className='container-fluid' style={{textAlign:"center",backgroundColor:"#C4E538"}}>
     <form >
-                       
-                       <label className="custom-control-label">Search by id</label>
+                       <table>
+                         <tr><td>
+                       <label className="custom-control-label">Search by id</label></td>
+                       <td>
                        <input type="number" 
-                       className="form-control" name="searchId" onChange={(e)=>setSearchId(e.target.value)}
-                       value={searchId} />
+                       className="form-control1" name="searchId" onChange={(e)=>setSearchId(e.target.value)}
+                       value={searchId} /></td>
+                       <td>
                        <button 
                        className="btn btn-md btn-warning" 
                        onClick={(e)=>handleSearch(e,searchId)}><i className="fa fa-search-plus" 
                        style={{fontSize:"20px"}}
                        aria-hidden="true"></i></button>
-                       <br/>
-                       <label className="custom-control-label">Search by Name</label>
+                       </td>
+                       </tr>
+                       <tr>
+                         <td>
+                       <label className="custom-control-label">Search by Name</label></td>
+                       <td>
                        <input type="text" 
-                        className="form-control"
-                       value={name} onChange={(e)=>setName(e.target.value)}/>
+                        className="form-control1"
+                       value={name} onChange={(e)=>setName(e.target.value)}/></td>
+                       <td>
                        <button 
                        className="btn btn-md btn-warning"
                        onClick={(e)=>handleSearchByName(e,name)}><i className="fa fa-search-plus" 
                        style={{fontSize:"20px"}}
-                       aria-hidden="true"></i></button>
+                       aria-hidden="true"></i></button></td>
+                       </tr>
+                       </table>
                      </form>
     <span>
                   
                   <button 
                   className="btn btn-lg btn-danger"
-                  onClick={(e)=>deleteSelected(e)}>Multiple checked delete
+                  onClick={(e)=>deleteSelected(e)}>Delete selected rows
                   <i class="fa fa-trash" aria-hidden="true"></i></button>
                   </span>  
                   <form onSubmit={handleEditFormSubmit} >
-       <table width="700px" border="10">
-               <tr>
+       <table width="700px" border="10" style={{marginLeft:"400px",borderRadius:"20%"}} cellSpacing={6} cellPadding={6}>
+               <tr style={{backgroundColor:"grey"}}>
                    <th style={{paddingLeft:"20px"}}>
                    <SelectAll2 list={currentItems}   handleChange={handleChange} />
                    </th>
@@ -81,7 +95,7 @@ handleCancel={handleCancel}
 />) : 
           
           
-               <tr>
+               <tr style={{backgroundColor:"lightgray",border:"solid grey 5px"}}>
                     <td style={{paddingLeft:"20px"}}>
                 <input type="checkbox" 
               className="  custom-control-input"
@@ -90,7 +104,7 @@ handleCancel={handleCancel}
                     onChange={handleChange} 
                     />
                 </td>
-                   <td>
+                   <td >
                        {item.id}
                    </td>
                    <td>
@@ -110,17 +124,23 @@ handleCancel={handleCancel}
         className="btn btn-lg btn-danger"
         onClick={(e)=>handleDelete(e,item.id)}> <i class="fa fa-trash" aria-hidden="true"></i></button>
     </td>
+             
                </tr>
+              
                
                
           
           
         }
+        
         </>
         ))
       }
+     
          </table>
          </form>
+         </div>
+         
     </>
   );
         
@@ -128,7 +148,7 @@ handleCancel={handleCancel}
   
 }
 
-function PaginatedItems1({ itemsPerPage ,items}) {
+function PaginatedItems1({ items}) {
    console.log(items)
    const [items1,setItems]=useState(items)
    const [name,setName]=useState("Name")
@@ -141,10 +161,14 @@ function PaginatedItems1({ itemsPerPage ,items}) {
 const [productId,setProductId]= useState(0)
   // We start with an empty list of items.
   const [currentItems, setCurrentItems] = useState([...items]);
-  const [pageCount, setPageCount] = useState(0);
+  const [pageCount, setPageCount] = useState(1);
   // Here we use item offsets; we could also use page offsets
   // following the API or data you're working with.
   const [itemOffset, setItemOffset] = useState(0);
+  //const [ placeholder,setPlaceHoler]= useState("select rows per page")
+  //var [startPage,setstartPage]=  useState(0)  //console.log(startPage)
+  const [initialSelected,setSelected]= useState(null)
+  const [forcePage,setForcePage]= useState(0)
   const [data,setData]= useState([...items])
   console.log(data)
   const [list,setList]= useState([])
@@ -156,17 +180,22 @@ const [productId,setProductId]= useState(0)
    city:""
 })
 const [limit,setLimit]=useState(5)
+//const [itemsPerPage,setItemsPerPage]  = useState(limit)
+let itemsPerPage= limit;
   
 
 
   useEffect(() => {
     // Fetch items from another resources.
-    const endOffset = itemOffset + itemsPerPage;
+  
+    const endOffset =parseInt( itemOffset) +parseInt (itemsPerPage);
+    console.log(endOffset)
     console.log(endOffset)
     console.log(`Loading items from ${itemOffset} to ${endOffset}`);
     const current=items
     console.log(current)
-    console.log(data.slice(itemOffset, endOffset));
+    //setCurrenttPage(0)
+   // console.log(data.slice(itemOffset, endOffset));
    setCurrentItems(items.slice(itemOffset, endOffset));
     setPageCount(Math.ceil(items.length / itemsPerPage));
   }, [itemOffset, itemsPerPage]);
@@ -192,17 +221,21 @@ console.log(tempUser)
   }
   const handleDelete=(e,id)=>{
     e.preventDefault()
-  
+   var a=window.confirm("Are you sure to Delete current recod?");
+    if(a){
         const newList = [...currentItems];
       //  console.log(productid)
         const index = newList.findIndex((product) => product.id === id)
         newList.splice(index, 1)
         setCurrentItems(newList)
+    }
+    
   
   }
   const deleteSelected = (e) => {
     e.preventDefault()
-  
+    var a=window.confirm("Are you sure to Delete Selected recods?");
+    if(a){
     const arrIds = []
     const newList = [...currentItems]
    
@@ -216,7 +249,7 @@ console.log(tempUser)
       //setData(newList)
       setCurrentItems(newList)
     }
-  
+    }
   
   
     }
@@ -244,7 +277,7 @@ console.log(tempUser)
      // setCurrentItems(arr)
      
 
-    
+    alert("New User is Created successfully")
      
   
   }
@@ -293,38 +326,31 @@ console.log(editform)
     //setData(newproducts)
     setCurrentItems(newproducts)
     setProductId(null)
+    alert("Record is updated successfully")
  // })
 }
 const handleCancel=()=>{
   setProductId(null)
 }
-  // Invoke when user click to request another page.
-  const handlePageClick1= useCallback((data) => {
-    // e.preventDefault();
-     let selected = data && data.selected;
-   // var _offset = Math.ceil(selected * limit);
-    const newOffset = Math.ceil(data.selected * itemsPerPage) % items.length;
-    setItemOffset(newOffset);
-    
-    //  filters.offset=_offset;
-    //  setOffset(_offset)
-     }
-     , [ ])
+  
   const handlePageClick = (event) => {
-  // let selected = event && event.selected;
-   // var newOffset = Math.ceil(selected * limit);
-   //  filters.offset=_offset;
-  //   setOffset(_offset)
-     // event.preventDefault()
-    const newOffset = (event.selected * itemsPerPage) % items.length;// original
-   // const newOffset = (selected * limit);
-  // setPageCount(Math.round(items.length / limit))
+   let selected = event&& event.selected;
+
+   console.log(selected)
+  
+
+    setForcePage( event.selected)
+    console.log("force page is",forcePage)
+    
+    const newOffset=(selected * limit)
+   
 
    console.log("newOffset", newOffset)
     console.log(
       `User requested page number ${event.selected}, which is offset ${newOffset}`
     );
     setItemOffset(newOffset);
+  
     
   }
 
@@ -360,9 +386,18 @@ for(let i=0;i<data.length;i++){
 }
 
 }
+const handleLimit=(e)=>{
+  e.preventDefault()
+  setLimit(e.target.value)
+  setItemOffset(0)
+  
+    setForcePage(0);
+ 
+}
   
   return (
     <>
+    <div className='container-fluid' style={{textAlign:"center",backgroundColor:"#C4E538"}}>
       <Items currentItems={currentItems} 
       items={items} handleDelete={handleDelete} deleteSelected={deleteSelected}
       handleEditFormSubmit={handleEditFormSubmit}
@@ -380,7 +415,24 @@ for(let i=0;i<data.length;i++){
        
 
      
-
+      <ul style={{ display: "flex", listStyleType: "none" ,marginLeft:"400px"}}>
+            <li style={{ position: "relative", top: "20px",left:"40px" }}>
+              <select
+              //  value={limit}
+                name="limit"
+              //  placeholder={placeholder}
+                onChange={e=>handleLimit(e)}
+                
+              >
+                <option value="select Limit">Select Rows on one page</option>
+                <option value="5">5</option>
+                <option value="10">
+                  10
+                  </option>
+                <option value="15">15</option>
+              </select>
+            </li>
+            <li>
       <ReactPaginate 
       
        pageClassName="page-item"
@@ -394,14 +446,25 @@ for(let i=0;i<data.length;i++){
         nextLabel="next >"
         itemsPerPage={itemsPerPage}
         onPageChange={handlePageClick}
-      // pageRangeDisplayed={2}
+       
+
+        pageRangeDisplayed={5}
+        
+        renderOnZeroPageCount={null}
+
+      
         pageCount={pageCount}
         previousLabel="< previous"
         renderOnZeroPageCount={null}
         breakLinkClassName="page-link"
         containerClassName="pagination"
         activeClassName="active"
+       // initialPage={initialPage}
+       forcePage={forcePage}
+     
      / >
+       </li>
+       </ul>
        
        
 
@@ -415,20 +478,20 @@ for(let i=0;i<data.length;i++){
             <form onSubmit={handleSubmit}>
             <label className="custom-control-label">ID:</label>
                 <input type="number" 
-                 className="form-control"
+                 className="form-control1"
                 name="id" required="required" value={form.id}
                 onChange={handleChange}
                 />
             
               <label className="custom-control-label">Name</label>
                 <input type="text" 
-                 className="form-control"
+                 className="form-control1"
                 name="name" required="required" value={form.name}
                 onChange={handleChange}
                 />
                 <label className="custom-control-label">City</label>
                 <input type="text" 
-                 className="form-control"
+                 className="form-control1"
                 name="city" required="required" value={form.city}
                 onChange={handleChange}
                 />
@@ -442,6 +505,7 @@ for(let i=0;i<data.length;i++){
                 type="submit">Add
                 <i class="fa fa-plus-square" aria-hidden="true"></i></button>
             </form>   
+            </div>
     </>
   );
 }
